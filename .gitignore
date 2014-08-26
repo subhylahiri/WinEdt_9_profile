@@ -1,0 +1,8 @@
+*.log
+*.dat
+*.dnt
+*.bak
+*.prj
+Config/PDFAutoDetect.edt
+MUI/
+ConfigEx/UserPreferences.ini
