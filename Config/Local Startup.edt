@@ -42,7 +42,7 @@
 
 // etc...
 
-  Assign("CMD","%@('SystemRoot');\system32\WindowsPowerShell\v1.0\powershell.exe -PSConsoleFile %@('USERPROFILE');\powershell.psc1");
+  Assign("CMD","%@('SystemRoot');\system32\WindowsPowerShell\v1.0\powershell.exe -PSConsoleFile %@('UserProfile');\powershell.psc1");
 //  Assign("CMD","%@('AppData');\Microsoft\Windows\Start Menu\Programs\Windows PowerShell\Windows PowerShell.lnk");
 
 // ==================================================================
