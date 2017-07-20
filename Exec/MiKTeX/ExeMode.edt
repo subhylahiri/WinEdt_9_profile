@@ -265,7 +265,7 @@
     Release(!"PDFTeXify-Warnings");
     Release(!"PDFTeXify-ExitCode");
     Assign(!"PDFTeXify-Viewer", !|1|);
-    Release(!"PDFTeXify-View_Search");
+    Assign(!"PDFTeXify-View_Search", !|1|);
     Release(!"PDFTeXify-STD_IO");
     Release(!"PDFTeXify-No_Interaction");
     Release(!"PDFTeXify-C-style-errors");
