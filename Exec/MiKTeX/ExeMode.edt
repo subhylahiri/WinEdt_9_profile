@@ -252,7 +252,7 @@
 
 // PDFTeXify
     Assign(!"PDFTeXify-Executable", !|texify.exe|);
-    Assign(!"PDFTeXify-Switches", !|--pdf --tex-option=-enable-write18|);
+    Assign(!"PDFTeXify-Switches", !|--pdf --tex-option="%$('write18-status');"|);
     Assign(!"PDFTeXify-Parameters", !|"%F"|);
     Release(!"PDFTeXify-Paper_Size");
     Release(!"PDFTeXify-Paper_Custom_Size");
