@@ -2,7 +2,7 @@
 
 // LaTeX
     Assign(!"LaTeX-Executable", !|latex.exe|);
-    Assign(!"LaTeX-Switches", !|%0|);
+    Assign(!"LaTeX-Switches", !|%0 %$('write18-status');|);
     Assign(!"LaTeX-Parameters", !|"%N%T"|);
     Release(!"LaTeX-Paper_Size");
     Release(!"LaTeX-Paper_Custom_Size");
@@ -77,7 +77,7 @@
 
 // PDFLaTeX
     Assign(!"PDFLaTeX-Executable", !|pdflatex.exe|);
-    Release(!"PDFLaTeX-Switches");
+    Assign(!"PDFLaTeX-Switches", !|%$('write18-status');|);
     Assign(!"PDFLaTeX-Parameters", !|"%N%T"|);
     Release(!"PDFLaTeX-Paper_Size");
     Release(!"PDFLaTeX-Paper_Custom_Size");
@@ -227,7 +227,7 @@
 
 // TeXify
     Assign(!"TeXify-Executable", !|texify.exe|);
-    Assign(!"TeXify-Switches", !|%0|);
+    Assign(!"TeXify-Switches", !|%0 --tex-option=%$('write18-status');|);
     Assign(!"TeXify-Parameters", !|"%F"|);
     Release(!"TeXify-Paper_Size");
     Release(!"TeXify-Paper_Custom_Size");
@@ -240,7 +240,7 @@
     Release(!"TeXify-Warnings");
     Release(!"TeXify-ExitCode");
     Assign(!"TeXify-Viewer", !|1|);
-    Release(!"TeXify-View_Search");
+    Assign(!"TeXify-View_Search", !|1|);
     Release(!"TeXify-STD_IO");
     Release(!"TeXify-No_Interaction");
     Release(!"TeXify-C-style-errors");
@@ -252,7 +252,7 @@
 
 // PDFTeXify
     Assign(!"PDFTeXify-Executable", !|texify.exe|);
-    Assign(!"PDFTeXify-Switches", !|--pdf --tex-option="%$('write18-status');"|);
+    Assign(!"PDFTeXify-Switches", !|--pdf --tex-option=%$('write18-status');|);
     Assign(!"PDFTeXify-Parameters", !|"%F"|);
     Release(!"PDFTeXify-Paper_Size");
     Release(!"PDFTeXify-Paper_Custom_Size");
