@@ -19,7 +19,7 @@
   Assign(!"DVIView");
   Release(!"DVIViewDef");
 
-  Assign(!"^TeXOutput", !"%P\TeXAux");
+  Assign(!"^TeXOutput", !"");
   Assign(!"^TeXOutputMustExist", !"1");
 
   Assign(!"TeX-Local", "%@('USERPROFILE');\MikTeX-local");
