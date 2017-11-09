@@ -18,8 +18,8 @@
 
   Requires(20100922);
 
-IfStr("%$('write18-status');", "-disable-write18", "=",>
-    "Assign('write18-status','-restrict-write18');",>
-    `IfStr("%$('write18-status');", "-restrict-write18", "=",>
-        "Assign('write18-status','-enable-write18');",>
-        "Assign('write18-status','-disable-write18');");`
+IfStr("%$('write18-status');", "--disable-write18", "=",>
+    "Assign('write18-status','--restrict-write18');",>
+    `IfStr("%$('write18-status');", "--restrict-write18", "=",>
+        "Assign('write18-status','--enable-write18');",>
+        "Assign('write18-status','--disable-write18');");`
