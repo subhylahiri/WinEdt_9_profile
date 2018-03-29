@@ -24,7 +24,7 @@
   // % !Compiler:: "foo"
   // and execute Exec\TeX\foo.edt instead!
   // By default it is disabled:
-  LetReg(9,!'0');
+  LetReg(9,!'1');
 
   // Assign 1 if you want to execute the currently selected compiler in
   // TeX Compile drop-down button.
