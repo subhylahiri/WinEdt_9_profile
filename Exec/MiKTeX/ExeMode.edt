@@ -89,8 +89,8 @@
     Release(!"PDFLaTeX-Errors");
     Release(!"PDFLaTeX-Warnings");
     Release(!"PDFLaTeX-ExitCode");
-    Release(!"PDFLaTeX-Viewer");
-    Release(!"PDFLaTeX-View_Search");
+    Assign(!"PDFLaTeX-Viewer", !|1|);
+    Assign(!"PDFLaTeX-View_Search", !|1|);
     Release(!"PDFLaTeX-STD_IO");
     Release(!"PDFLaTeX-No_Interaction");
     Release(!"PDFLaTeX-C-style-errors");
