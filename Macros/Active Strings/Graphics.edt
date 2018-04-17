@@ -21,26 +21,13 @@
 //============================================================================
   // If you have defined special PATH for graphics try your graphics folder(s)
   // WinEdt does not know about your special directories...
-  SaveFind;
-  SetFindStr("\\graphicspath\{\(0+{\{*\}}\)\}");
-  SetFindinFilesProject(1);
-  SetRegEx(1);
-  SearchReset;
-  FindInFiles;
-  IfOK("GetFindItem(9,0);","Relax;");
-  RestoreFind;
-
-  FindInString("%!9","\\graphicspath\{\(0+{\{*\}}\)\}",-11,-11,1);
-  IfOK("Relax;","Exit;");
-  GetTag(0,8);
-
-  FindInString('%!8','\{@{"}\(0*\)@{"}\}',-11,7,1,%!7);
-  WhileOK(!`GetTag(0,9);>
-    UnixToDos("%!9",9);>
-    IfFileExists("%!9%!4",!"LetReg(2,'%!9%!4');Call('Exists');");>
-    IfFileExists("%P\%!9%!4",!"LetReg(2,'%P\%!9%!4');Call('Exists');");>
-    IfFileExists("%P\%!9",!"LetReg(2,'%P\%!9');Call('Exists');");>
-    FindInString('%!8','\{@{"}\(0*\)@{"}\}',-11,7,1001,%!7);`);
+  Exe("%b\Macros\Gather\GraphicsPath.edt");
+  WhileOK(!`GetTag(0,6);>
+    UnixToDos("%!6",6);>
+    IfFileExists("%!6%!4",!"LetReg(2,'%!6%!4');Call('Exists');");>
+    IfFileExists("%P\%!6%!4",!"LetReg(2,'%P\%!6%!4');Call('Exists');");>
+    IfFileExists("%P\%!6",!"LetReg(2,'%P\%!6');Call('Exists');");>
+    FindInString('%!9','%!8',-11,7,1001,%!7);`);
   Prompt('Graphics file ""%!3"" not found!');
   PopTagsandRegisters;
   Exit;
