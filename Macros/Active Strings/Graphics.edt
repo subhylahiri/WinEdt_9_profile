@@ -12,18 +12,35 @@
 
   // Prompt('%?');
   UnixToDos("%?", 3);  // Convert the UNIX PATH (if necessary)
-  GetFilePath("%!3",2);
+  GetFilePath("%!3",4);
 
   // Try specification relative to the Main File if full PATH is missing
-  IfStr("%!2","","=",!"LetReg(2,'%P');");
-  IfFileExists("%!2\",!"Relax;",!"LetReg(2, '%P\%!2');");
+  IfStr("%!4","","=",!"LetReg(2,'%P\');",!"LetReg(4,'%!4\');LetReg(2,'%!4');");
+  IfFileExists("%!2",!"Relax;",!"LetReg(2,'%P\%!4');");
+  Call("Exists");
+//============================================================================
   // If you have defined special PATH for graphics try your graphics folder(s)
   // WinEdt does not know about your special directories...
-  Call("Exists");
-  IfFileExists("%!2\figs\",!"LetReg(2, '%!2\figs');",!"Relax;");
-  Call("Exists");
-  IfFileExists("%!2\figures\",!"LetReg(2, '%!2\figures');",!"Relax;");
-  Call("Exists");
+  SaveFind;
+  SetFindStr("\\graphicspath\{\(0+{\{*\}}\)\}");
+  SetFindinFilesProject(1);
+  SetRegEx(1);
+  SearchReset;
+  FindInFiles;
+  IfOK("GetFindItem(9,0);","Relax;");
+  RestoreFind;
+
+  FindInString("%!9","\\graphicspath\{\(0+{\{*\}}\)\}",-11,-11,1);
+  IfOK("Relax;","Exit;");
+  GetTag(0,8);
+
+  FindInString('%!8','\{@{"}\(0*\)@{"}\}',-11,7,1,%!7);
+  WhileOK(!`GetTag(0,9);>
+    UnixToDos("%!9",9);>
+    IfFileExists("%!9%!4",!"LetReg(2,'%!9%!4');Call('Exists');");>
+    IfFileExists("%P\%!9%!4",!"LetReg(2,'%P\%!9%!4');Call('Exists');");>
+    IfFileExists("%P\%!9",!"LetReg(2,'%P\%!9');Call('Exists');");>
+    FindInString('%!8','\{@{"}\(0*\)@{"}\}',-11,7,1001,%!7);`);
   Prompt('Graphics file ""%!3"" not found!');
   PopTagsandRegisters;
   Exit;
@@ -31,7 +48,7 @@
 // ==================================================================
 :Exists::
   GetFileName("%!3",0);
-  LetReg(1,"%!2\%!0");
+  LetReg(1,"%!2%!0");
   GetFileType("%!3",0);
   LetReg(1,"%!1%!0");
 

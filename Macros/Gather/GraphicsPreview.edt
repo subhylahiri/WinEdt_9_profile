@@ -18,10 +18,31 @@
       IfOK(!"Relax;",>
       !"Prompt(''Cannot locate graphics file ""%?""'');PopTagsandRegisters;End;");');
   Call("Open");
-  GetFullPath(1, "%?", "%P\figs"); // Relative to the Main File
-  Call("Open");
-  GetFullPath(1, "%?", "%P\figures"); // Relative to the Main File
-  Call("Open");
+//============================================================================
+  // If you have defined special PATH for graphics try your graphics folder(s)
+  // WinEdt does not know about your special directories...
+  SaveFind;
+  SetFindStr("\\graphicspath\{\(0+{\{*\}}\)\}");
+  SetFindinFilesProject(1);
+  SetRegEx(1);
+  SearchReset;
+  FindInFiles;
+  IfOK("GetFindItem(9,0);","Relax;");
+  RestoreFind;
+
+  FindInString("%!9","\\graphicspath\{\(0+{\{*\}}\)\}",-11,-11,1);
+  IfOK("Relax;","Exit;");
+  GetTag(0,8);
+
+  FindInString('%!8','\{@{"}\(0*\)@{"}\}',-11,7,1,%!7);
+  WhileOK(!`GetTag(0,9);>
+    UnixToDos("%!9",9);>
+    GetFullPath(1, "%?", "%!9"); // Relative to the Main File<>
+    Call("Open");>
+    GetFullPath(1, "%?", "%P\%!9"); // Relative to the Main File<>
+    Call("Open");>
+    FindInString('%!8','\{@{"}\(0*\)@{"}\}',-11,7,1001,%!7);`);
+//============================================================================
   JMP("Failed");
 
 //============================================================================
@@ -48,7 +69,7 @@
 //============================================================================
 
 :Failed::
-  Prompt('Cannot locate graphics file "%!1"');
+  Prompt('Cannot locate graphics file "%~!1"');
 
   PopTagsandRegisters;
 
