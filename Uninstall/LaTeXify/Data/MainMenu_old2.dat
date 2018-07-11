@@ -1,0 +1,10 @@
+MENU="TeX_Menu"
+  CAPTION="Te&X"
+  CONFIG_FILTER="Default;MiKTeX;TeX Live"
+  ITEM="TeXify"
+    CAPTION="Te&Xify"
+    IMAGE="TeXTeXify"
+    SAVE_INPUT=1
+    MACRO="Exe('%b\Exec\TeX\TeXify.edt');"
+    SHORTCUT="24664::Shift+Ctrl+X"
+    REQ_FILTER=:"%!M=TeX"|"%!M=TeX:STY"|"%!M=TeX:AUX"

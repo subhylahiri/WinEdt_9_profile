@@ -1,0 +1,21 @@
+MENU="TeX_Menu"
+  CAPTION="Te&X"
+  CONFIG_FILTER="Default;MiKTeX;TeX Live"
+  ITEM="TeXify"
+    CAPTION="Te&Xify"
+    IMAGE="TeXTeXify"
+    SAVE_INPUT=1
+    MACRO="Exe('%b\Exec\TeX\TeXify.edt');"
+    SHORTCUT="24664::Shift+Ctrl+X"
+    REQ_FILTER=:"%!M=TeX"|"%!M=TeX:STY"|"%!M=TeX:AUX"
+  ITEM="LaTeXify"
+    CAPTION="LaTeXify"
+    IMAGE="TeXLaTeXify"
+    SAVE_INPUT=1
+    MACRO=`Assign("Old-BibTeX-Executable","%$('BibTeX-Executable');");`+
+          `Assign("BibTeX-Executable","biber.exe");`+
+          `Exe('%b\Exec\TeX\TeXify.edt');`+
+          `Assign("BibTeX-Executable","%$('Old-BibTeX-Executable');");`+
+          `Release("Old-BibTeX-Executable");`
+    SHORTCUT="49240::Ctrl+Alt+X"
+    REQ_FILTER=:"%!M=TeX"|"%!M=TeX:STY"|"%!M=TeX:AUX"
